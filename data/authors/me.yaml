@@ -1,99 +1,93 @@
 schema: hugoblox/author/v1
 slug: me
 is_owner: true
+avatar: /media/authors/me.png
 name:
-  display: Alex Johnson
-  given: Alex
-  family: Johnson
+  display: Gitesh Kumar
+  given: Gitesh
+  family: Kumar
 postnominals: []
 status:
   icon: "💻"  # Emoji shown on avatar badge: 💻 developer, 🎨 designer, 🚀 startup, 🔬 researcher, 🎓 student
-role: Full-Stack Developer
-email: alex@example.com
+role: Applied AI & Data Engineer | Industrial Systems
+email: giteshkumar15@gmail.com
 bio: |
-  Full-stack developer with 5+ years of experience building scalable web applications.
-  Passionate about modern JavaScript, cloud architecture, and creating delightful user experiences.
+  I specialize in bridging the gap between legacy industrial infrastructure and modern AI. With 4+ years of experience at Hindustan Petroleum, I lead the digital modernization of safety-critical systems, transforming messy SCADA/ERP data into high-performance ML architectures. My expertise lies in Safety-by-Design by building robust RAG frameworks and explainable vision systems for autonomous industrial processes.
 
 affiliations:
-  - name: Tech Corp
-    url: https://techcorp.example.com
+  - name: Friedrich-Alexander-Universität Erlangen-Nürnberg
+    url: https://www.fau.eu/
 
 links:
   - icon: at-symbol
-    url: mailto:alex@example.com
+    url: mailto:giteshkumar15@gmail.com
     label: E-mail Me
   - icon: brands/github
-    url: https://github.com/alexjohnson
+    url: https://github.com/gitesh-kumar
   - icon: brands/linkedin
-    url: https://www.linkedin.com/in/alexjohnson/
-  - icon: brands/x
-    url: https://x.com/alexjohnson
+    url: https://www.linkedin.com/in/giteshkumar15/
 
 interests:
-  - Web Development
-  - Cloud Architecture
-  - Open Source
-  - Developer Experience
+  - Applied Machine Learning
+  - Industrial IoT & SCADA
+  - LLM Architecture (RAG)
+  - Explainable AI (XAI)
+  - Data Engineering Pipelines
 
 education:
-  - degree: B.S. Computer Science
-    institution: State University
-    start: 2015-09-01
-    end: 2019-05-31
+  - degree: M.Sc. in Elektromobilität-ACES
+    institution: Friedrich-Alexander-Universität Erlangen-Nürnberg
+    start: 2022-10-01
     summary: |
-      Focus on software engineering and distributed systems.
-      Senior project on distributed caching systems.
-    button:
-      text: View Project
-      url: https://github.com/alexjohnson/senior-project
-      icon: brands/github
+      Specialization in AI and Sustainable Production Technology.
+      **Master's Thesis:** Developed a Retrieval-Augmented (RAG) framework for fine-tuned LLMs (LLaMA-2) to automate vulnerability analysis in cybersecurity.
+      **Mini Thesis:** Implemented XAI techniques (Grad-CAM, LIME) for YOLOv8-based industrial quality inspection at the FAPS Lab.
+  - degree: B.Eng. in Mechanical Engineering
+    institution: PEC University of Technology, Chandigarh
+    start: 2013-07-01
+    end: 2017-05-31
 
 experience:
-  - role: Senior Software Engineer
-    org: Tech Corp
-    start: 2023-01-01
+  - role: Sr. Operations Officer (Data & Analytics)
+    org: Hindustan Petroleum Corporation Limited (HPCL)
+    start: 2017-07-01
+    end: 2021-08-31
     summary: |
-      Lead development of microservices architecture serving 1M+ users.
-      Improved API response time by 40% through optimization.
-      Mentored team of 5 junior developers.
-  - role: Full-Stack Developer
-    org: Startup Inc
-    start: 2021-06-01
-    end: 2022-12-31
-    summary: |
-      Built and deployed 3 production applications from scratch.
-      Implemented CI/CD pipeline reducing deployment time by 60%.
-      Led migration from monolith to microservices architecture.
-  - role: Junior Developer
-    org: Web Agency
-    start: 2020-01-01
-    end: 2021-05-31
-    summary: |
-      Developed client websites using React and modern web technologies.
-      Participated in code reviews and agile ceremonies.
+      Managed end-to-end industrial data lifecycles for a high-capacity LPG plant.
+      Bridged the gap between legacy SCADA systems and ERP (JD Edwards) to create centralized data models.
+      Architected automated Python-based ETL pipelines, replacing manual reporting and improving production efficiency by 10%.
+      Technical Coordinator for field-testing industrial vision systems for safety-critical leak detection.
 
 skills:
-  - name: Development
+  - name: AI & Machine Learning
     items:
-      - label: TypeScript
+      - label: Python (PyTorch/TensorFlow)
         level: 5
-      - label: React
+      - label: RAG & LLMs (Llama-2, FAISS)
         level: 5
-      - label: Node.js
-        level: 5
-      - label: Python
+      - label: Computer Vision (YOLOv8)
         level: 4
-  - name: DevOps
+      - label: Explainable AI (LIME, Grad-CAM)
+        level: 5
+  - name: Data & Systems
     items:
-      - label: Docker
-        level: 4
-      - label: AWS
-        level: 4
-      - label: CI/CD
+      - label: SQL & ETL Pipelines
         level: 5
+      - label: SCADA & Industrial IoT
+        level: 4
+      - label: ERP (JD Edwards)
+        level: 5
+      - label: Docker & Git
+        level: 4
 
 languages:
   - name: English
+    level: 5
+    label: Professional (IELTS 8/9)
+  - name: German
+    level: 2
+    label: B1 (Actively Improving)
+  - name: Hindi
     level: 5
     label: Native
 

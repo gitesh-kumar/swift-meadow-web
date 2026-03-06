@@ -22,10 +22,10 @@ sections:
         enable: true
         prefix: "I build"
         strings:
-          - "full-stack web apps"
-          - "scalable APIs"
-          - "beautiful UIs"
-          - "open source tools"
+          - "applied AI systems"
+          - "robust data pipelines"
+          - "explainable AI models"
+          - "industrial digitalization solutions"
         type_speed: 70
         delete_speed: 40
         pause_time: 2500
@@ -52,7 +52,7 @@ sections:
     id: projects
     content:
       title: "Featured Projects"
-      subtitle: "A selection of my recent work"
+      subtitle: "Bringing Academic Research to Industrial Practice"
       count: 0
       filters:
         folders:
@@ -60,12 +60,12 @@ sections:
       buttons:
         - name: All
           tag: '*'
-        - name: Full-Stack
-          tag: Full-Stack
-        - name: Frontend
-          tag: Frontend
-        - name: Backend
-          tag: Backend
+        - name: Fine-tuned LLMs and RAG
+          tag: LLMs
+        - name: Computer Vision
+          tag: Vision
+        - name: Data-Engineering
+          tag: Data-Eng
       default_button_index: 0
       # Archive link auto-shown if more projects exist than 'count' above
       # archive:
@@ -85,49 +85,29 @@ sections:
   - block: tech-stack
     id: skills
     content:
-      title: "Tech Stack"
-      subtitle: "Technologies I use to build things"
+      title: "Technical Expertise"
+      subtitle: "Tools I use to solve complex industrial problems"
       categories:
-        - name: Languages
+        - name: AI & Machine Learning
           items:
-            - name: TypeScript
-              icon: devicon/typescript
-            - name: JavaScript
-              icon: devicon/javascript
             - name: Python
               icon: devicon/python
-            - name: Go
-              icon: devicon/go
-        - name: Frontend
+            - name: PyTorch
+              icon: devicon/pytorch
+            - name: Scikit-learn
+              icon: devicon/python # Uses python icon as fallback
+            - name: Hugging Face
+              icon: devicon/huggingface
+        - name: Data & Industrial
           items:
-            - name: React
-              icon: devicon/react
-            - name: Next.js
-              icon: devicon/nextjs
-            - name: Tailwind CSS
-              icon: devicon/tailwindcss
-            - name: Alpine.js
-              icon: devicon/alpinejs
-        - name: Backend
-          items:
-            - name: Node.js
-              icon: devicon/nodejs
-            - name: Express
-              icon: devicon/express
-            - name: PostgreSQL
+            - name: SQL
               icon: devicon/postgresql
-            - name: Redis
-              icon: devicon/redis
-        - name: DevOps
-          items:
             - name: Docker
               icon: devicon/docker
-            - name: AWS
-              icon: devicon/amazonwebservices-wordmark
-            - name: GitHub Actions
-              icon: brands/github
-            - name: Vercel
-              icon: devicon/vercel
+            - name: Git
+              icon: devicon/github
+            - name: Linux
+              icon: devicon/linux
     design:
       style: grid
       show_levels: false
@@ -142,45 +122,20 @@ sections:
   - block: resume-experience
     id: experience
     content:
-      title: Experience
+      title: Professional Experience
       date_format: Jan 2006
       items:
-        - title: Senior Software Engineer
-          company: Tech Corp
-          company_url: ''
-          company_logo: ''
-          location: San Francisco, CA
-          date_start: '2023-01-01'
-          date_end: ''
+        - title: Sr. Operations Officer (Data & Systems)
+          company: Hindustan Petroleum Corporation Limited
+          company_url: 'https://www.hindustanpetroleum.com/'
+          location: India
+          date_start: '2017-07-01'
+          date_end: '2021-08-31'
           description: |2-
-            * Lead development of microservices architecture serving 1M+ users
-            * Improved API response time by 40% through optimization
-            * Mentored team of 5 junior developers
-            * Tech stack: React, Node.js, PostgreSQL, AWS
-        - title: Full-Stack Developer
-          company: Startup Inc
-          company_url: ''
-          company_logo: ''
-          location: Remote
-          date_start: '2021-06-01'
-          date_end: '2022-12-31'
-          description: |2-
-            * Built and deployed 3 production applications from scratch
-            * Implemented CI/CD pipeline reducing deployment time by 60%
-            * Collaborated with design team on UI/UX improvements
-            * Tech stack: Next.js, Express, MongoDB, Docker
-        - title: Junior Developer
-          company: Web Agency
-          company_url: ''
-          company_logo: ''
-          location: New York, NY
-          date_start: '2020-01-01'
-          date_end: '2021-05-31'
-          description: |2-
-            * Developed client websites using modern web technologies
-            * Maintained and updated legacy codebases
-            * Participated in code reviews and agile ceremonies
-            * Tech stack: React, WordPress, PHP, MySQL
+            * **Digital Modernization:** Architected Python-based ETL pipelines to integrate SCADA and ERP (JD Edwards) data, replacing manual reporting for safety-critical operations.
+            * **Systems Integration:** Served as the primary technical coordinator for field-testing and operational validation of industrial vision systems in collaboration with Honeywell.
+            * **Operational Impact:** Analyzed production patterns and historical downtime to identify bottlenecks, driving a 10% increase in overall plant efficiency.
+            * **Cross-Functional Leadership:** Managed the end-to-end data lifecycle for high-capacity LPG operations, ensuring data integrity for regulatory compliance and safety auditing.
     design:
       columns: '1'
       background:
@@ -218,11 +173,12 @@ sections:
     id: contact
     content:
       title: Get In Touch
-      subtitle: "Let's build something amazing together"
+      subtitle: "Open to Applied AI & Systems Engineering opportunities"
       text: |-
-        I'm always interested in hearing about new projects and opportunities.
-        Whether you're looking to hire, collaborate, or just want to say hi, feel free to reach out!
-      email: alex@example.com
+        I am always interested in discussing new challenges in Applied AI, data engineering or systems optimization. 
+        
+        Whether you are looking to hire, collaborate, or simply exchange ideas, feel free to reach out!
+      email: giteshkumar15@gmail.com
       autolink: true
     design:
       columns: '1'
@@ -236,14 +192,14 @@ sections:
   # CTA Card
   - block: cta-card
     content:
-      title: "Open to Opportunities"
+      title: "Ready for the Next Challenge"
       text: |-
-        I'm currently looking for **senior engineering** or **tech lead** roles.
+        I am currently seeking roles where I can apply my experience in **Industrial Systems** and **Applied AI**.
         
-        Let's connect and discuss how I can help your team.
+        Download my comprehensive Resume below.
       button:
         text: 'Download Resume'
-        url: uploads/resume.pdf
+        url: uploads/Resume_Gitesh_Kumar.pdf
         new_tab: true
     design:
       card:
