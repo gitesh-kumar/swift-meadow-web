@@ -11,12 +11,12 @@ links:
 featured: true
 ---
 
-## 🎯 Thesis Core Objective
+## Thesis Core Objective
 The central goal of this research was to solve the **static knowledge limitation** and **factual inaccuracy** of Large Language Models (LLMs) in the rapidly shifting cybersecurity landscape. This project proves that **Fine-Tuning** and **Retrieval-Augmented Generation (RAG)** are not redundant but synergetic: Fine-Tuning adapts the model to the technical "language" of security, while RAG provides the factual "evidence".
 
 ---
 
-## 🛠️ Methodology & Technical Points
+## Methodology & Technical Points
 
 ### 1. Domain Adaptation (Fine-Tuning)
 I utilized **Parameter-Efficient Fine-Tuning (PEFT)** with **LoRA** to adapt Meta-Llama-3 to the cybersecurity domain. 
