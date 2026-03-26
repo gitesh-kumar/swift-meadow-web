@@ -180,7 +180,7 @@ sections:
         Download my comprehensive Resume below.
       button:
         text: 'Download Resume'
-        url: uploads/Resume_Gitesh_Kumar.pdf
+        url: uploads/Resume.pdf
         new_tab: true
     design:
       card:
