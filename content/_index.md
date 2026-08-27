@@ -22,9 +22,9 @@ sections:
         enable: true
         prefix: "I build"
         strings:
-          - "applied AI systems"
-          - "robust data pipelines"
-          - "explainable AI models"
+          - "industrial agentic AI systems"
+          - "production LLM Systems"
+          - "zero-trust IoT pipelines"
           - "industrial digitalization solutions"
         type_speed: 70
         delete_speed: 40
@@ -64,7 +64,7 @@ sections:
           tag: LLMs
         - name: Computer Vision
           tag: Vision
-        - name: Data-Engineering
+        - name: Agentic AI
           tag: Data-Eng
       default_button_index: 0
       # Archive link auto-shown if more projects exist than 'count' above
@@ -94,10 +94,20 @@ sections:
               icon: devicon/python
             - name: PyTorch
               icon: devicon/pytorch
-            - name: Scikit-learn
+            - name: LangChain
               icon: devicon/python # Uses python icon as fallback
             - name: Hugging Face
               icon: devicon/huggingface
+        - name: LLM & Agentic AI
+          items:
+            - name: Groq
+              icon: devicon/python
+            - name: Ollama
+              icon: devicon/linux
+            - name: Fastapi
+              icon: devicon/fastapi
+            - name: RAG / Vector Search
+              icon: devicon/python
         - name: Data & Industrial
           items:
             - name: SQL
@@ -106,7 +116,15 @@ sections:
               icon: devicon/docker
             - name: Git
               icon: devicon/github
+            - name: SCADA / OPC-UA
+              icon: devicon/linux
+        - name: Deployment
+          items:
+            - name: Railway
+              icon: devicon/railway
             - name: Linux
+              icon: devicon/linux
+            - name: OpenZiti
               icon: devicon/linux
     design:
       style: grid
@@ -154,9 +172,9 @@ sections:
     id: contact
     content:
       title: Get In Touch
-      subtitle: "Open to Applied AI & Systems Engineering opportunities"
+      subtitle: "Open to Industrial AI, LLM Systems and ML Engineering roles"
       text: |-
-        I am always interested in discussing new challenges in Applied AI, data engineering or systems optimization. 
+        I am always interested in discussing new challenges in Agentic AI, data engineering or systems optimization. 
         
         Whether you are looking to hire, collaborate, or simply exchange ideas, feel free to reach out!
       email: giteshkumar15@gmail.com
@@ -175,7 +193,7 @@ sections:
     content:
       title: "Ready for the Next Challenge"
       text: |-
-        I am currently seeking roles where I can apply my experience in **Industrial Systems** and **Applied AI**.
+        I am currently seeking roles in **Industrial AI**, **LLM Systems** and **ML Engineering** where I can apply my experience.
         
         Download my comprehensive Resume below.
       button:

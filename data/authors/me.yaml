@@ -12,8 +12,7 @@ status:
 role: Applied AI & Data Engineer | Industrial Systems
 email: giteshkumar15@gmail.com
 bio: |
-  I specialize in bridging the gap between legacy industrial infrastructure and modern AI. With 4+ years of experience at Hindustan Petroleum, I lead the digital modernization of safety-critical systems, transforming messy SCADA/ERP data into high-performance ML architectures. My expertise lies in Safety-by-Design by building robust RAG frameworks and explainable vision systems for autonomous industrial processes.
-
+  I build and deploy production-grade LLM systems, agentic AI workflows and industrial data pipelines. With 4+ years at Hindustan Petroleum working with SCADA and ERP systems, I understand both the factory floor and the AI stack needed to make sense of it. My recent work combines structured data engineering with natural language AI agents which is deployed live, containerised with Docker and secured with zero-trust networking.
 affiliations:
   - name: Friedrich-Alexander-Universität Erlangen-Nürnberg
     url: https://www.fau.eu/
@@ -38,6 +37,7 @@ education:
   - degree: M.Sc. in Elektromobilität-ACES
     institution: Friedrich-Alexander-Universität Erlangen-Nürnberg
     start: 2022-10-01
+    end: 2026-03-31
     summary: |
       Specialization in AI and Sustainable Production Technology.
       **Master's Thesis:** Developed a Retrieval-Augmented (RAG) framework for fine-tuned LLMs (LLaMA-2) to automate vulnerability analysis in cybersecurity.
