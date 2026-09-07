@@ -9,13 +9,19 @@ name:
 postnominals: []
 status:
   icon: "💻"  # Emoji shown on avatar badge: 💻 developer, 🎨 designer, 🚀 startup, 🔬 researcher, 🎓 student
-role: Applied AI & Data Engineer | Industrial Systems
+role: AWS Certified Generative AI Developer Professional | Applied AI & Data Engineer | Industrial Systems
 email: giteshkumar15@gmail.com
 bio: |
-  I build and deploy production-grade LLM systems, agentic AI workflows and industrial data pipelines. With 4+ years at Hindustan Petroleum working with SCADA and ERP systems, I understand both the factory floor and the AI stack needed to make sense of it. My recent work combines structured data engineering with natural language AI agents which is deployed live, containerised with Docker and secured with zero-trust networking.
+  I am an AWS Certified Generative AI Developer - Professional and I build and deploy production-grade LLM systems, agentic AI workflows and industrial data pipelines. With 4+ years at Hindustan Petroleum working with SCADA and ERP systems, I understand both the factory floor and the AI stack needed to make sense of it. My recent work combines structured data engineering with natural language AI agents which is deployed live, containerised with Docker and secured with zero-trust networking.
 affiliations:
   - name: Friedrich-Alexander-Universität Erlangen-Nürnberg
     url: https://www.fau.eu/
+certifications:
+  - name: AWS Certified Generative AI Developer – Professional
+    issuer: Amazon Web Services
+    year: 2026
+    credential_id: c6d007eebb814412bef8daa3eaee1f7a
+    url: https://www.credly.com/badges/1885f06c-9a45-48ad-b325-3a9b414757e0
 
 links:
   - icon: at-symbol

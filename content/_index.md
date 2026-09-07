@@ -136,6 +136,27 @@ sections:
       spacing:
         padding: ["4rem", "0", "4rem", "0"]
   
+      # Certifications
+  - block: markdown
+    id: certifications
+    content:
+      title: "Certifications"
+      subtitle: ""
+      text: |
+        <div style="display: flex; align-items: center; gap: 3rem; flex-wrap: wrap; justify-content: center; padding: 2rem 0;">
+          <div data-iframe-width="150" data-iframe-height="270" 
+               data-share-badge-id="1885f06c-9a45-48ad-b325-3a9b414757e0" 
+               data-share-badge-host="https://www.credly.com">
+          </div>
+          <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+        </div>
+    design:
+      background:
+        color:
+          light: "#ffffff"
+          dark: "#0d0d12"
+      spacing:
+        padding: ["3rem", "0", "3rem", "0"]
   # Experience Timeline
   - block: resume-experience
     id: experience
