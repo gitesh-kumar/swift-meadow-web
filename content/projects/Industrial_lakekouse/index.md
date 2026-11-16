@@ -1,9 +1,9 @@
 ---
 title: "Industrial Agentic AI System (Predictive Maintenance & Financial Risk Engine)"
 date: 2026-03-11
-summary: "A full-stack industrial data pipeline with dual-mode AI agents, zero-trust security and a live deployed dashboard which translates raw IoT telemetry into real-time financial risk insights."
-tags: ["Data-Eng", "AI Agents", "IoT", "Zero-Trust", "LLMOps"]
-tech_stack: ["Python 3.12", "LangChain", "Groq", "Ollama/Llama-3", "OpenZiti", "FastAPI", "Docker", "SQLAlchemy", "Railway"]
+summary: "A full-stack industrial data pipeline with a SQL-writing LangChain agent, an MCP server, OPC UA ingestion, zero-trust security and a live deployed dashboard which translates raw IoT telemetry into real-time financial risk insights."
+tags: ["Data-Eng", "AI Agents", "MCP", "OPC UA", "IoT", "Zero-Trust", "LLMOps"]
+tech_stack: ["Python 3.12", "LangChain", "MCP", "OPC UA (asyncua)", "Groq", "Ollama", "Langfuse", "LangSmith", "OpenZiti", "FastAPI", "Docker", "SQLAlchemy", "Railway"]
 links:
   - type: github
     url: https://github.com/gitesh-kumar/Industrial_Data_Pipeline
@@ -11,6 +11,9 @@ links:
   - type: live
     url: https://industrialdatapipeline.up.railway.app/dashboard
     label: Live Demo
+  - type: live
+    url: https://industrialdatapipeline-mcp.up.railway.app/
+    label: MCP Server Demo
 featured: true
 ---
 
@@ -20,13 +23,15 @@ Most industrial monitoring systems tell you when something is wrong. This one te
 
 I built this to solve a problem I saw firsthand at Hindustan Petroleum which was critical operational data locked in systems engineers couldn't easily query, leading to decisions made from stale Excel exports pulled manually from SCADA systems. The goal was to automate that entire workflow from raw sensor ingestion to financial decision support and make it queryable by a non-technical plant manager in natural language.
 
+All machine data is simulated.
+
 ---
 
 ## Data Architecture (Medallion Pattern)
 
 Raw sensor telemetry from 17 factory assets (turbines, compressors, pumps, motors, generators, heat exchangers) flows through three layers:
 
-**Bronze** - High-frequency ingestion, append-only, never overwritten. Each machine generates readings every 3 seconds: vibration RMS, temperature, and power consumption. Failure spikes are injected probabilistically to simulate real anomaly events.
+**Bronze** - High-frequency ingestion, append-only, never overwritten. Each machine generates readings every 3 seconds: vibration RMS, temperature, and power consumption. Failure spikes are injected probabilistically to simulate real anomaly events. The machines publish their values through an OPC UA server (85 nodes, five variables per machine), and an OPC UA client subscribes to them and writes the bronze layer. The pipeline reads the machines the way it would read a real plant.
 
 **Silver** - Removing duplicates, quality flagging (PASS, HIGH_TEMP_WARN, VIBRATION_CRITICAL, FAILURE_SPIKE, DEGRADATION_WARN), unit conversion and composite risk scoring per machine.
 
@@ -34,28 +39,40 @@ Raw sensor telemetry from 17 factory assets (turbines, compressors, pumps, motor
 
 ---
 
-## AI Agent (Three Deployment Modes)
+## AI Agent
 
-The system supports three inference modes, each designed for a different deployment context.
+One LangChain agent with one tool, `run_sql`. The model reads a description of the database, writes the SQL itself, runs it through the tool and answers from the rows it gets back. If a query fails, it reads the error and tries again, with a hard limit of five queries per question.
 
-**Local Mode (Ollama + Llama3)** - Runs entirely on-premise. No data leaves the machine. Built for environments where operational data cannot be sent to external cloud providers which is the reality in most industrial settings.
+**Why an agent and not a router.** The first production version was an intent router. It sorted each question into one of eight fixed intents and ran a prewritten query. It was cheap and predictable, but it gave no answer whenever the wording did not match an intent. The agent removes that limit. The model writes the SQL, so the wording no longer matters.
 
-**Cloud Fast Mode (Groq + Intent Router)** - The AI classifies the question into one of eight predefined intents, executes a pre-validated parameterized SQL query and uses the LLM only to phrase the answer naturally. Two LLM calls total. This replaced the original ReAct agent after I found it looping on certain questions and burning through token budgets unpredictably. Token usage dropped by roughly 80%.
+**Reasoning beyond the data.** Many real questions have no column that answers them. When a plant manager asks which machine is the most inefficient, nothing in the data is called efficiency. The agent says what is not measured, picks the connected measurements, queries them, compares the machines, and labels its answer as an inference. A question that has nothing to do with the factory gets a plain answer without any query.
 
-**Cloud Agent Mode (Groq + ReAct)** - A LangChain SQL agent that autonomously writes and executes SQL for exploratory analysis. More flexible but deliberately kept separate from the production fast mode as an exploratory tool.
+**Two deployment modes**, switched by one environment variable:
 
-The dual-mode design reflects a real industrial constraint, which is, data sovereignty versus scalability. The same codebase handles both just switched by a single environment variable.
+- **Cloud** - Groq. If the model provider fails after a query has already run, the system returns the raw rows with a notice instead of an error.
+- **Local** - Ollama on the same machine. No data and no traces leave the machine. Built for environments where operational data cannot be sent to external cloud providers, which is the reality in most industrial settings. Answer quality depends on the model size.
 
 ---
 
-## Hallucination Bug and Grounding Guards
+## Safety: Read-Only SQL Guard and Grounding
 
-During testing I found a critical failure. The model confidently answered questions about machine types that didn't exist in the data, fabricating a plausible-sounding answer using unrelated fleet statistics. I implemented four grounding guards:
+The model is never trusted to be safe. A guard written as plain code sits between the model and the database and checks every query in four layers: the database is opened read-only, a SQLite authorizer allows reads on listed tables only, only a single SELECT statement is accepted, and a timeout and a row limit apply. A prompt that tries to make the model delete data or show other tables fails at the guard, whatever the model does.
 
-1. **Unrecognized intent refusal** - Returns a clear message instead of defaulting silently to a fallback query.
-2. **Entity verification** - Checks whether the question references a machine type that actually exists in the schema before querying.
-3. **Empty result handling** - Explicit response when no data matches rather than letting the model improvise.
-4. **Grounded prompt** - Instructs the model to reference only machine IDs present in the retrieved data.
+**The hallucination bug.** During testing of the first version I found a critical failure. The model confidently answered questions about machine types that didn't exist in the data, fabricating a plausible-sounding answer using unrelated fleet statistics. That bug shaped the design. In the current version every number and machine id in an answer must come from a query result, the prompt demands it, and the evaluation checks it for every test question.
+
+---
+
+## Observability and Evaluation
+
+**Tracing.** In cloud mode every run is traced to Langfuse and LangSmith: the prompt, each tool call, the SQL, the rows and the answer. Tracing is switched off in local mode, so the on-premise promise holds.
+
+**Evaluation.** A test set of 39 questions covers direct answers, inference questions, refusals, safety attacks and questions the data cannot answer. Each answer is graded by rules, including whether every number in it appears in the query results. The grader itself is tested with a scripted good model and a scripted bad model, so I know it catches invented numbers before it judges a real model. It cannot catch shallow reasoning when the numbers are correct, and I treat that as a known limit.
+
+---
+
+## MCP Server
+
+The same data is available as a Model Context Protocol server, so any MCP client (Claude Desktop, Cursor, another agent) can use it without a change to the project. It has three tools: `describe_database`, `run_sql` and `ask_factory`. All of them are read-only and go through the same SQL guard. It runs over stdio locally and over Streamable HTTP on Railway. The public page lets a visitor send real MCP requests from the browser, including a DELETE that the guard rejects. The model-backed tool is off on the public server, and where it is on it has a length limit, a cache and a rate limit.
 
 ---
 
@@ -81,6 +98,7 @@ An automated governance audit runs after every pipeline execution:
 
 - FastAPI REST service with 5 endpoints (`/machines`, `/machines/{id}/risk`, `/pipeline/health`, `/query`, `/dashboard`)
 - Industrial command center dashboard has machine status cards with risk scores, AI query interface and pipeline health view.
+- A second Railway service runs the MCP server.
 - Containerised with Docker.
 - Deployed on Railway with GitHub CI/CD.
 - Zero-trust ingestion layer on self-hosted Hetzner infrastructure (Nuremberg, Germany).
@@ -93,13 +111,16 @@ An automated governance audit runs after every pipeline execution:
 | :--- | :--- |
 | **Machines monitored** | 17 assets across 6 machine types |
 | **Pipeline layers** | Bronze → Silver → Gold medallion |
-| **AI deployment modes** | 3 (local, cloud fast, cloud agent) |
-| **Token reduction** | ~80% vs original ReAct agent |
-| **Security** | Zero-trust, no exposed ports, X.509 per-machine identity |
+| **Ingestion** | OPC UA server and client, 85 nodes |
+| **AI deployment modes** | 2 (cloud, local) |
+| **MCP tools** | 3, all read-only |
+| **Evaluation** | 39 graded test questions |
+| **Observability** | Langfuse and LangSmith tracing |
+| **Security** | Read-only SQL guard, zero-trust network, no exposed ports, X.509 per-machine identity |
 | **Deployment** | Live on Railway, Docker, GitHub CI/CD |
 
 ---
 
 **Author:** Gitesh Kumar  
 **Project Context:** Industrial IoT, Agentic AI, LLMOps, OT/IT Security  
-**Tech:** Python, FastAPI, LangChain, Groq, Ollama, OpenZiti, Docker, SQLAlchemy, Railway
+**Tech:** Python, FastAPI, LangChain, MCP, OPC UA, Groq, Ollama, Langfuse, OpenZiti, Docker, SQLAlchemy, Railway
